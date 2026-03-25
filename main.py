@@ -2,6 +2,7 @@ from fastapi import FastAPI
 import pandas as pd
 
 app = FastAPI()
+csv_file = pd.read_csv("data.csv")
 
 
 class Identity:
