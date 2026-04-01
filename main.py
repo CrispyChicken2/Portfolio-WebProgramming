@@ -1,18 +1,21 @@
 from fastapi import FastAPI
 import pandas as pd
+from pydantic import BaseModel
 
 app = FastAPI()
-csv_file = pd.read_csv("data.csv")
+file = pd.read_csv("data.csv")
 
 
-class Identity:
-    def __init__(self, name: str, surname: str, age: int):
-        self.name = name
-        self.surname = surname
-        self.age = age
+class Identity(BaseModel):
+    name : str
+    surname : str
+    age : int
 
+@app.get("/data")
+def get_data():
+    return file.to_dict(orient="records")
 
 @app.get("/identity")
 def read_identity():
     identity = Identity(name="John", surname="Doe", age=30)
-    return {"name": identity.name, "surname": identity.surname, "age": identity.age}
+    return {identity}
