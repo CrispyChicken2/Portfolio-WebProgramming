@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>ePortfolio</title>
+</head>
+
+<body>
+
+    <h1>{{ welcome_message }}</h1>
+
+    <h2>Mes projets</h2>
+
+    <ul>
+        {% for project in projects %}
+        <li>
+            <strong>{{ project.name }}</strong><br>
+            {{ project.description }}<br>
+            Publié : {{ project.is_published }}
+        </li>
+        <br>
+        {% endfor %}
+    </ul>
+
+    <a href="/admin">Accès admin</a>
+
+</body>
+
+</html>

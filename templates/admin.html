@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Admin - ePortfolio</title>
+</head>
+
+<body>
+
+    <h1>Admin - Gestion des projets</h1>
+
+    <h2>Ajouter un projet</h2>
+
+    <form action="/projects" method="post">
+        <label>Nom du projet :</label><br>
+        <input type="text" name="name" required><br><br>
+
+        <label>Description :</label><br>
+        <input type="text" name="description" required><br><br>
+
+        <label>Publié :</label><br>
+        <select name="is_published">
+            <option value="true">Oui</option>
+            <option value="false">Non</option>
+        </select><br><br>
+
+        <input type="hidden" name="admin" value="true">
+
+        <button type="submit">Ajouter</button>
+    </form>
+
+    <h2>Liste des projets</h2>
+
+    <ul>
+        {% for project in projects %}
+        <li>
+            <strong>{{ project.name }}</strong> - {{ project.description }} (Publié : {{ project.is_published }})
+        </li>
+        {% endfor %}
+    </ul>
+
+    <br>
+    <a href="/">Retour à l'accueil</a>
+
+</body>
+
+</html>
